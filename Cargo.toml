@@ -29,6 +29,8 @@ subtle = { version = "2.6.1", features = ["const-generics"] }
 wasm-bindgen = "0.2.106"
 x509-cert = { version = "0.2.5", default-features = false, features = ["hazmat", "std"] }
 zstd = "0.13.3"
+uniffi = {version = "0.31", features = [ "cli" ] }
+thiserror = "2.0.18"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
 criterion = { version = "0.8.0", features = ["html_reports"] }
@@ -73,3 +75,10 @@ crate-type = ["cdylib", "rlib"]
 
 [profile.release]
 lto = true
+
+[build-dependencies]
+uniffi = {version = "0.31", features = [ "build" ] }
+
+[[bin]]
+name = "uniffi-bindgen"
+path = "uniffi-bindgen.rs"

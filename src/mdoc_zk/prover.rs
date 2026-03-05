@@ -16,8 +16,10 @@ use rand::RngCore;
 use std::io::Cursor;
 use wasm_bindgen::prelude::wasm_bindgen;
 
+
 /// Zero-knowledge prover for mdoc credential presentations.
 #[wasm_bindgen]
+#[derive(uniffi::Object)]
 pub struct MdocZkProver {
     circuit_version: CircuitVersion,
     num_attributes: usize,

@@ -18,6 +18,8 @@ pub mod transcript;
 mod witness;
 pub mod zk_one_circuit;
 
+uniffi::setup_scaffolding!();
+
 /// A serialized size, which is in the range [1, 2^24 -1] per [draft-google-cfrg-libzk-00 section
 /// 7][1]. Serialized in little endian order, occupying 3 bytes.
 ///

@@ -31,8 +31,9 @@ pub mod prover;
 mod sha256;
 pub mod verifier;
 
+
 /// Versions of the mdoc_zk circuit interface.
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy,uniffi::Enum)]
 #[wasm_bindgen]
 pub enum CircuitVersion {
     V6 = 6,
@@ -187,10 +188,10 @@ impl CircuitInputs {
         if mdoc.valid_from > mdoc.valid_until {
             return Err(anyhow!("credential validity interval is reversed"));
         }
-        if time < &mdoc.valid_from {
+        if *time < *mdoc.valid_from {
             return Err(anyhow!("credential is not yet valid"));
         }
-        if time > &mdoc.valid_until {
+        if *time > *mdoc.valid_until {
             return Err(anyhow!("credential is expired"));
         }
         byte_array_as_bits(time.as_bytes(), split_hash_input.statement.time);
